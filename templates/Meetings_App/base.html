@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Meeting Analytics{% endblock %}</title>
+
+  <meta name="description" content="Meeting analytics and participant tracking system">
+
+  <link rel="stylesheet" href="{% static 'Meetings_App/style.css' %}">
+</head>
+
+<body>
+
+<!-- Navigation bar with active page highlighting -->
+<nav class="navbar">
+  <div class="nav-left">
+    <a href="{% url 'home' %}" class="logo">
+      {% block logo %}Meeting Analytics{% endblock %}
+    </a>
+  </div>
+
+  <div class="nav-links">
+    <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+    <a href="{% url 'analysis' %}" class="{% if request.resolver_match.url_name == 'analysis' %}active{% endif %}">Analysis</a>
+    <a href="{% url 'add_observation' %}" class="{% if request.resolver_match.url_name == 'add_observation' %}active{% endif %}">Add Observation</a>
+    <a href="{% url 'participants' %}" class="{% if request.resolver_match.url_name == 'participants' %}active{% endif %}">Participants</a>
+  </div>
+</nav>
+
+<!-- Main content block injected from child templates -->
+<main class="container">
+  {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+{% extends 'Meetings_App/base.html' %}
+{% load static %}
+
+{% block title %}Add Observation{% endblock %}
+
+{% block content %}
+<section class="page">
+    <div class="cards">
+        <div class="card">
+
+            <h1 class="page-title">Add New Observation Record</h1>
+            <p class="description">Add a new observation by selecting a meeting, participant and observer.</p>
+
+            {% if error %}<div class="msg error">{{ error }}</div>{% endif %}
+            {% if success %}<div class="msg success">{{ success }}</div>{% endif %}
+            {% if warning %}<div class="msg warning">{{ warning }}</div>{% endif %}
+
+
+            <form method="POST" class="form-box">
+                {% csrf_token %}
+
+                <div class="form-row">
+                    <label for="mid">Meeting ID:</label>
+                    <select name="mid" id="mid" required>
+                        <option value="" disabled selected hidden>-- select meeting --</option>
+                        {% for m in meetings %}
+                        <option value="{{ m }}">{{ m }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="pid">Participant ID:</label>
+                    <select name="pid" id="pid" required>
+                        <option value="" disabled selected hidden>-- select participant --</option>
+                        {% for p in participants %}
+                        <option value="{{ p }}">{{ p }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="oid">Observer ID:</label>
+                    <select name="oid" id="oid" required>
+                        <option value="" disabled selected hidden>-- select observer --</option>
+                        {% for o in observers %}
+                        <option value="{{ o }}">{{ o }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="method">Method:</label>
+                    <select name="method" id="method" required>
+                        <option value="" disabled selected hidden>-- select method --</option>
+                        {% for m in methods %}
+                        <option value="{{ m }}">{{ m }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="cLevel">Confidence level:</label>
+                    <input type="number" name="cLevel" id="cLevel" min="1" max="100" required>
+                    <small class="hint">Range: 1 (low confidence) to 100 (high confidence)</small>
+                </div>
+
+                <button type="submit" class="btn primary">
+                    Add Observation
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

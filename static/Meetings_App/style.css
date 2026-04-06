@@ -1,0 +1,381 @@
+/* Design tokens
+   Centralized colors, spacing, radius and shadows */
+:root {
+    --color-bg: #f5f7fa;
+    --color-surface: #ffffff;
+    --color-surface-muted: #f1f5f9;
+
+    --color-text: #1f2937;
+    --color-text-muted: #555;
+    --color-text-soft: #64748b;
+    --color-text-light: #888;
+    --color-text-hint: #aaa;
+
+    --color-primary: #1e1e2f;
+    --color-primary-hover: #333;
+    --color-primary-alt: #1f1d3a;
+    --color-primary-alt-hover: #2c2954;
+
+    --color-accent: #6366f1;
+    --color-accent-soft: rgba(99, 102, 241, 0.2);
+
+    --color-border: #cbd5e1;
+    --color-border-light: #e2e8f0;
+
+    --color-info-panel: #59dbe6;
+
+    --color-success-text: #166534;
+    --color-success-bg: #dcfce7;
+    --color-success-border: #86efac;
+
+    --color-warning-text: #92400e;
+    --color-warning-bg: #fef3c7;
+    --color-warning-border: #fde68a;
+
+    --color-link: blue;
+    --color-white: #fff;
+
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-button-hover: 0 6px 16px rgba(0, 0, 0, 0.2);
+
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 10px;
+    --radius-xl: 12px;
+
+    --transition-fast: 0.15s ease;
+    --transition-default: 0.2s ease;
+}
+
+
+/* Global reset and base styles */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* Shared typography
+   Reusable heading/text classes */
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.page-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.description {
+    color: var(--color-text-muted);
+    margin-bottom: 10px;
+}
+
+.hint {
+    color: var(--color-text-hint);
+}
+
+.empty {
+    text-align: center;
+    color: var(--color-text-light);
+    padding: 15px;
+}
+
+
+/* Layout containers
+   Main wrappers used across pages */
+.page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.page-header {
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+
+.home-container {
+    max-width: 900px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.form-box {
+    max-width: 560px;
+    margin-top: 24px;
+    margin-bottom: 20px;
+}
+
+
+/* Navigation
+   Top navbar and links */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-primary);
+    padding: 15px 40px;
+}
+
+.logo {
+    color: var(--color-white);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav-links a {
+    color: var(--color-white);
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.nav-links a.active {
+    font-weight: bold;
+    border-bottom: 2px solid var(--color-white);
+}
+
+.menu a {
+    display: block;
+    margin: 0.3rem 0;
+    color: var(--color-link);
+}
+
+
+/* Home / hero section
+   Landing page specific elements  */
+.home-title {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.home-subtitle {
+    font-size: 18px;
+    color: var(--color-text-muted);
+    margin-bottom: 30px;
+}
+
+.home-image {
+    max-width: 600px;
+    border-radius: var(--radius-xl);
+    margin: 0 auto 30px;
+}
+
+.hero {
+    width: 100%;
+    height: auto;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+/* Buttons and interactive elements
+   Shared button styles */
+.btn,
+.hero-button {
+    display: inline-block;
+    border-radius: var(--radius-md);
+    color: var(--color-white);
+    font-weight: 600;
+    transition:
+        background-color var(--transition-default),
+        transform var(--transition-default),
+        box-shadow var(--transition-default),
+        opacity var(--transition-default);
+}
+
+.btn {
+    background-color: var(--color-primary);
+    padding: 12px 20px;
+}
+
+.btn:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn.primary {
+    width: 100%;
+    max-width: 320px;
+}
+
+.hero-button {
+    display: block;
+    margin: 24px auto;
+    padding: 12px 24px;
+    max-width: 300px;
+    width: auto;
+    background-color: var(--color-primary-alt);
+    border-radius: var(--radius-lg);
+}
+
+.hero-button:hover {
+    background-color: var(--color-primary-alt-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-button-hover);
+}
+
+
+/* Content blocks
+   Cards and highlighted panels  */
+.panel {
+    background: var(--color-info-panel);
+    padding: 24px;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.card {
+    background: var(--color-surface);
+    padding: 24px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
+    transition: transform var(--transition-fast);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.card h2 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    margin-bottom: 20px;
+    color: var(--color-text-soft);
+}
+
+
+/* Tables
+   Query results / analytics tables  */
+
+.qtable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.qtable th {
+    text-align: center;
+    background: var(--color-surface-muted);
+    padding: 12px;
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-border-light);
+}
+
+.qtable td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.qtable tr:hover {
+    background: #eef2ff;
+}
+
+
+/* Forms
+   Inputs, labels and focus states */
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.form-row label {
+    min-width: 120px;
+}
+
+.form-row input,
+.form-row select {
+    width: 100%;
+    max-width: 420px;
+    padding: 8px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-surface);
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px var(--color-accent-soft);
+}
+
+select:invalid {
+    color: var(--color-text-light);
+}
+
+select option {
+    color: var(--color-text);
+}
+
+select option[value=""] {
+    color: var(--color-text-light);
+}
+
+
+/* Feedback messages
+   Success / warning states shown to the user*/
+
+.msg.success,
+.msg.warning {
+    padding: 10px 12px;
+    border-radius: var(--radius-md);
+    margin-bottom: 16px;
+    border: 1px solid;
+}
+
+.msg.success {
+    color: var(--color-success-text);
+    background-color: var(--color-success-bg);
+    border-color: var(--color-success-border);
+}
+
+.msg.warning {
+    color: var(--color-warning-text);
+    background-color: var(--color-warning-bg);
+    border-color: var(--color-warning-border);
+}

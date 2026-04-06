@@ -1,0 +1,108 @@
+{% extends "Meetings_App/base.html" %}
+{% block content %}
+
+<section class="page">
+  <div class="page-header">
+    <h1 class="page-title">Participants</h1>
+  </div>
+  <div class="cards">
+
+    <!-- Form: find participants based on selected meeting location -->
+    <div class="card">
+      <h3 class="section-title">Find Participants by Meeting Location</h3>
+
+      <form method="POST" class="form-box">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="find">
+
+        <div class="form-row">
+          <label for="location">Location:</label>
+          <select name="location" id="location">
+            <option value="" disabled selected hidden> -- select location --</option>
+            {% for loc in locations %}
+            <option value="{{ loc }}" {% if selected_location == loc %}selected{% endif %}>
+              {{ loc }}
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <button type="submit" class="btn">Find Participants</button>
+      </form>
+
+      {% if find_message %}
+      <div class="msg error">{{ find_message }}</div>
+      {% endif %}
+
+      {% if find_rows %}
+      <table class="qtable">
+        <thead>
+        <tr>
+          <th>Participant ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for pid in find_rows %}
+        <tr>
+          <td>{{ pid }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+
+    <!-- Form: analyze a selected participant -->
+    <div class="card">
+      <h3 class="section-title">Participant Analytics</h3>
+
+      <form method="POST" class="form-box">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="analyze">
+
+        <div class="form-row">
+          <label for="pid">Participant ID:</label>
+          <select name="pid" id="pid" required>
+            <option value="" disabled selected hidden>-- select participant --</option>
+            {% for p in participants %}
+            <option value="{{ p }}">{{ p }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <button type="submit" class="btn">Analyze Participant</button>
+      </form>
+
+      {% if analyze_error %}
+      <div class="msg error">{{ analyze_error }}</div>
+      {% endif %}
+
+      {% if analyze_error == "" and observer_count is not None %}
+      <table class="qtable">
+        <thead>
+        <tr>
+          <th>Unique Observers Count</th>
+          <th>Meetings Without Observation</th>
+          <th>Most Used Method</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>{{ observer_count }}</td>
+          <td>{{ meetings_without_observation }}</td>
+          <td>
+            {% if top_observation_method %}
+            {{ top_observation_method }}
+            {% else %}
+            NA
+            {% endif %}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

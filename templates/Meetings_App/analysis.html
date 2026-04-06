@@ -1,0 +1,115 @@
+{% extends "Meetings_App/base.html" %}
+{% block content %}
+
+<section class="page">
+
+  <!-- Dashboard header -->
+  <div class="page-header">
+    <h1>Analytics Dashboard</h1>
+    <p class="subtitle">
+      This dashboard summarizes three SQL-based analyses focused on participant risk,
+        observer confidence, and unusual meeting-location patterns.
+    </p>
+  </div>
+
+  <!-- Query result cards -->
+  <div class="cards">
+
+    <!-- Query 1 results -->
+    <div class="card">
+      <h2>Unmonitored Residents in Busy Meetings</h2>
+      <p class="hint">{{ q1_rows|length }} result(s)</p>
+      <p class="description">
+        Participants who appeared in at least five busy meetings and accumulated risk, while remaining unobserved in those events.
+      </p>
+
+      <table class="qtable">
+        <thead>
+          <tr>
+            <th>Participant ID</th>
+            <th>Busy Meeting Count</th>
+            <th>Risk Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in q1_rows %}
+          <tr>
+            <td>{{ row.pid }}</td>
+            <td>{{ row.meeting_count }}</td>
+            <td>{{ row.risk_count }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="3" class="empty">No results found for current conditions</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Query 2 results -->
+    <div class="card">
+      <h2>Highest-Confidence Observer per Meeting</h2>
+      <p class="hint">{{ q1_rows|length }} result(s)</p>
+      <p class="description">
+      For each complex meeting, we identify the observer with the highest recorded confidence level.
+        This highlights the most reliable monitoring source within high-complexity environments.
+      </p>
+
+      <table class="qtable">
+        <thead>
+          <tr>
+            <th>Meeting ID</th>
+            <th>Observer ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in q2_rows %}
+          <tr>
+            <td>{{ row.mid }}</td>
+            <td>{{ row.oid }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="2" class="empty">No results found for current conditions</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Query 3 results -->
+    <div class="card">
+      <h2>Locations with Unusual Meeting Patterns</h2>
+      <p class="hint">{{ q1_rows|length }} result(s)</p>
+      <p class="description">
+        Locations where undocumented meetings occur despite the presence of efficient observers.
+          This may indicate inconsistencies between monitoring quality and reporting completeness.
+      </p>
+
+      <table class="qtable">
+        <thead>
+          <tr>
+            <th>Location</th>
+            <th>Non-Favorite Meeting Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in q3_rows %}
+          <tr>
+            <td>{{ row.location }}</td>
+            <td>{{ row.meeting_count }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="2" class="empty">No results found for current conditions</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

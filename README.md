@@ -73,6 +73,19 @@ This project emphasizes:
 
 ---
 
+## Data Model
+
+The database schema is centered around meeting activity and monitoring relationships.
+
+- **Meetings** captures when and where each meeting took place.
+- **MeetingParticipants** represents participant attendance and stores a meeting-specific risk score.
+- **Observers** stores monitoring agents and their preferred operating location.
+- **Observations** records monitoring events by connecting a participant, an observer, and a meeting, along with the observation method and confidence score.
+
+Together, these tables enable SQL-based analytical workflows for risk detection, monitoring quality assessment, and anomaly discovery across meetings and locations.
+
+---
+
 ## Project Structure
 ```
 meeting-analytics-system/

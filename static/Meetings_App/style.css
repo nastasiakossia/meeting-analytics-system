@@ -278,7 +278,8 @@ a {
     margin-bottom: 10px;
 }
 
-.card p {
+.card p,
+.card ul {
     margin-bottom: 20px;
     color: var(--color-text-soft);
 }

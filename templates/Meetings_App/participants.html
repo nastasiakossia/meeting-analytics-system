@@ -56,6 +56,21 @@
     <div class="card">
       <h3 class="section-title">Participant Analytics</h3>
 
+      <p>
+        Displays key statistics for a selected participant:
+      </p>
+
+      <ul>
+        <li><b>Observer Count</b> – number of distinct observers who have monitored the participant</li>
+        <li><b>Meetings Without Observation</b> – meetings where the participant was not monitored</li>
+        <li><b>Top Observation Method</b> – most frequently used method ("NA" if none)</li>
+      </ul>
+
+      <p>
+        If the participant is not found, an error message is shown.
+      </p>
+
+
       <form method="POST" class="form-box">
         {% csrf_token %}
         <input type="hidden" name="form_type" value="analyze">

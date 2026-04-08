@@ -1,0 +1,38 @@
+{% extends 'Meetings_App/base.html' %}
+{% load static %}
+
+{% block title %}Meeting Analytics{% endblock %}
+
+{% block content %}
+<!-- Main landing page content -->
+<div class="home-container">
+
+    <h1 class="home-title">Meeting Analytics System</h1>
+
+    <!-- Introductory description of the system -->
+    <p class="home-subtitle">
+        Explore structured meeting data, identify high-risk participants,
+    and gain insights into observer behavior through interactive analysis.
+    </p>
+
+    <div class="cards">
+        <div class="card">
+
+            <p><b>Entities of the system:</b></p>
+
+            <ul class="description">
+                <li><b>Participant</b> — attends meetings and reports risk of being observed</li>
+                <li><b>Meeting</b> — event with date and location</li>
+                <li><b>Observer</b> — monitoring agents and their preferred operating location</li>
+                <li><b>Observation</b> — record of an observer tracking a participant during a meeting, including the method used and a confidence level representing observation quality</li>
+            </ul>
+
+        </div>
+    </div>
+
+    <a href="{% url 'analysis' %}" class="hero-button">View Analysis</a>
+
+    <img class="home-image" src="{% static 'Meetings_App/abstract_data.jpg' %}" alt="Abstract Data">
+
+</div>
+{% endblock %}

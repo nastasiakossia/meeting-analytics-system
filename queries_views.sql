@@ -25,7 +25,7 @@ WHERE EXISTS (
 )
 GO
 
-CREATE VIEW UnmonitoredParticipants AS
+CREATE VIEW CoveredLowRiskParticipants AS
 SELECT DISTINCT M.pid
 FROM MeetingParticipants M
 WHERE NOT EXISTS (

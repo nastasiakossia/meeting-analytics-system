@@ -82,7 +82,7 @@ The database schema is centered around meeting activity and monitoring relations
 - **Meetings** captures when and where each meeting took place.
 - **MeetingParticipants** represents participant attendance and stores a meeting-specific risk score.
 - **Observers** stores monitoring agents and their preferred operating location.
-- **Observations** records monitoring events by connecting a participant, an observer and a meeting, along with the observation method and confidence score.
+- **Observations** records of observers tracking a participants during a meetings, including the method used and a confidence level representing observation quality.
 
 The system supports:
 

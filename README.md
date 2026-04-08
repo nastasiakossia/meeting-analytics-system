@@ -140,13 +140,13 @@ meeting-analytics-system/
 ![Home](assets/home.png)
 
 ### Analytics Dashboard
-![Home](assets/analysis.png)
+![Analysis](assets/analysis.png)
 
 ### Add Observation
-![Home](assets/add.png)
+![Add Observation](assets/add.png)
 
 ### Participant Analysis
-![Home](assets/participants.png)
+![Participants](assets/participants.png)
 
 ---
 

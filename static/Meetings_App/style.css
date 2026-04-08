@@ -91,6 +91,7 @@ a {
 }
 
 .description {
+    text-align: left;
     color: var(--color-text-muted);
     margin-bottom: 10px;
 }

@@ -1,41 +1,41 @@
 # Meeting Analytics System
 
-Web-based analytical system for exploring meeting data, identifying high-risk participants, and uncovering patterns in observer behavior using SQL-driven insights.
+Web-based system for analyzing meeting data using SQL-driven queries and a relational database backend.
 
 ---
 
 ## Overview
 
-This project simulates a data analytics system for monitoring structured meeting activity.
+This project focuses on exploring structured meeting data and extracting meaningful insights using SQL.
 
-The goal is to detect **risk patterns, behavioral anomalies, and monitoring gaps** using SQL-based analysis.
+The system allows users to:
 
-The system answers questions such as:
-- Which participants are repeatedly involved in high-density meetings without being monitored?
-- Which observers are the most reliable in complex environments?
-- Where do inconsistencies between expected and recorded activity occur?
+- analyze participant activity across meetings
+- explore relationships between participants, meetings and observations
+- query and filter data based on user input
 
-This reflects real-world data analysis tasks such as:
-- anomaly detection
-- risk scoring
-- behavioral pattern analysis
+The main goal is to demonstrate the ability to work with relational data, design SQL queries and translate raw data into interpretable results.
 
 ---
 
 ## Key Features
 
 - **Analytics Dashboard**
-  - Identify high-risk participants based on meeting activity
-  - Detect unmonitored participants in high-density meetings
-  - Find observers with the highest confidence per meeting
-  - Discover unusual meeting-location patterns
+Analyze meeting data using complex SQL queries and aggregated metrics.
+
+- Compute statistics for individual participants
+- Work with grouped data and conditional aggregations
+- Handle edge cases such as missing data (N/A) and zero values
 
 - **Add Observation**
-  - Insert new observation records via validated forms
-  - Uses dropdowns to prevent invalid inputs
+  Insert new observation records into the system:
+
+  - validate user input using dropdown selections
+  - prevent duplicate entries
+  - ensure referenced entities exist
 
 -  **Participant Analysis**
-  - Analyze individual participant activity and risk
+  - Analyze individual participant activity
 
 -  **Location-Based Filtering**
   - Find participants by meeting location
@@ -44,32 +44,34 @@ This reflects real-world data analysis tasks such as:
 
 ## Technical Focus
 
-This project emphasizes:
+This project demonstrates:
 
-- Writing **complex SQL queries** for analytical tasks
-- Designing and working with a **relational database schema**
-- Integrating SQL logic into a **Django backend**
-- Structuring code for clarity (separating queries from views)
-- Building a clean and intuitive **user interface**
+- writing **complex SQL queries**  
+  - JOINs  
+  - GROUP BY  
+  - HAVING  
+  - subqueries  
+  - EXISTS / NOT EXISTS  
+  - aggregation functions  
+
+- designing and working with a **relational database schema**
+
+- integrating SQL into a **Django backend**
+
+- handling **data validation and business logic**
+
+- building a structured and consistent **web interface**
+
 
 ---
 
 ## Database
 
-- Initially worked with a **university-provided database**
-- Later **reconstructed the schema independently**
-- Created and populated tables using:
-  - `create_tables_commands.sql`
-  - CSV datasets (`data/` folder)
+The database schema was **reconstructed and implemented independently**, including:
 
----
-
-## Tech Stack
-
-- Python
-- Django
-- SQL (T-SQL / SQL Server)
-- HTML, CSS
+- designing tables and relationships  
+- defining keys and connections between entities  
+- loading data from CSV files
 
 ---
 
@@ -80,9 +82,22 @@ The database schema is centered around meeting activity and monitoring relations
 - **Meetings** captures when and where each meeting took place.
 - **MeetingParticipants** represents participant attendance and stores a meeting-specific risk score.
 - **Observers** stores monitoring agents and their preferred operating location.
-- **Observations** records monitoring events by connecting a participant, an observer, and a meeting, along with the observation method and confidence score.
+- **Observations** records monitoring events by connecting a participant, an observer and a meeting, along with the observation method and confidence score.
 
-Together, these tables enable SQL-based analytical workflows for risk detection, monitoring quality assessment, and anomaly discovery across meetings and locations.
+The system supports:
+
+- tracking participant activity across meetings  
+- linking observations to specific participants and meetings  
+- computing statistics based on risk and observation data  
+
+---
+
+## Tech Stack
+
+- Python
+- Django
+- SQL (T-SQL / SQL Server)
+- HTML, CSS
 
 ---
 
@@ -109,13 +124,13 @@ meeting-analytics-system/
 ├── manage.py
 ├── requirements.txt
 ├── create_tables_commands.sql
-└── queries_views.sql
+└── queries_views.sql 
 ```
 
-- `queries.py` — contains raw SQL logic
+- `queries.py` — SQL queries 
 - `views.py` — connects backend to UI
-- `templates/` — frontend pages
-- `data/` — datasets used for population
+- `templates/` — UI
+- `data/` — CSV datasets  
 
 ---
 
@@ -137,11 +152,10 @@ meeting-analytics-system/
 
 ## Engineering Decisions
 
-- Replaced free-text inputs with dropdowns to ensure **data integrity**
-- Separated SQL queries into a dedicated module (`queries.py`)
-- Unified naming across the project for consistency
-- Improved UX and navigation clarity
-- Designed queries to extract **meaningful insights**, not just raw data
+- Replaced free-text inputs with dropdowns to improve data integrity  
+- Separated SQL logic from application logic  
+- Designed queries to return interpretable results, not raw data  
+- Implemented handling of missing and edge-case data  
 
 ---
 
@@ -155,7 +169,7 @@ Make sure the database is configured in `settings.py`.
 
 ## Notes
 - The project demonstrates data analysis through SQL, not machine learning
-- Focus is on query design, relational thinking, and system integration
+- Focus is on query design, relational thinking and system integration
 
 ## Author
 

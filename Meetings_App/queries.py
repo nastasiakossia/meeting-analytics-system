@@ -1,10 +1,10 @@
 # ANALYSIS QUERIES
 
 ANALYSIS_Q1 = """
-SELECT M.pid, COUNT(*) AS meeting_count, SUM(M.risk) AS risk_count
+SELECT M.pid, COUNT(*) AS meeting_count, SUM(M.risk) AS risky_meeting_count
 FROM MeetingParticipants M
-    INNER JOIN UnmonitoredParticipants U
-        ON U.pid = M.pid
+    INNER JOIN CoveredLowRiskParticipants С
+        ON С.pid = M.pid
     INNER JOIN BusyMeetings B
         ON B.mid = M.mid
 GROUP BY M.pid
@@ -122,7 +122,7 @@ WHERE mid = %s AND pid = %s;
 CHECK_OBSERVATION_EXISTS = """
 SELECT 1
 FROM Observations
-WHERE mid = %s AND oid = %s;
+WHERE mid = %s AND pid = %s AND oid = %s;
 """
 
 GET_OBSERVER_AVG_CONFIDENCE = """

@@ -88,9 +88,9 @@ def add_observation(request):
 
 
                 if not error:
-                    cursor.execute(CHECK_OBSERVATION_EXISTS, [meeting_id, observer_id])
+                    cursor.execute(CHECK_OBSERVATION_EXISTS, [meeting_id, participant_id, observer_id])
                     if cursor.fetchone() is not None:
-                        error = "An observation for this meeting and observer already exists."
+                        error = "An observation for this meeting, participant and observer already exists."
 
 
                 if not error:
